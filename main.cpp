@@ -5,6 +5,9 @@
 #include "WinApp.h"
 #include "AxisIndicator.h"
 
+#include <DirectXMath.h>
+using namespace DirectX;
+
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	WinApp* win = nullptr;
@@ -55,6 +58,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	// ゲームシーンの初期化
 	gameScene = new GameScene();
 	gameScene->Initialize();
+
+	//頂点データ
+	XMFLOAT3 vertices[] =
+	{
+		{-0.5f,-0.5f,0.0f},//左下
+		{-0.5f,+0.5f,0.0f},//左上
+		{+0.5f,-0.5f,0.0f},//右下
+	};
+	
 
 	// メインループ
 	while (true) {
