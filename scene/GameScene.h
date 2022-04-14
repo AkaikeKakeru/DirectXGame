@@ -48,6 +48,9 @@ private: // メンバ変数
 	Audio* audio_ = nullptr;
 	DebugText* debugText_ = nullptr;
 
+	//テクスチャ読み込み
+	uint32_t textureHandle_ = 0;
+
 	//3Dモデル
 	Model* model_ = nullptr;
 
