@@ -26,7 +26,7 @@ void GameScene::Initialize() {
 	//X,Y,Z方向のスケーリングを設定
 	worldTransform_.scale_ = { 5.0f, 5.0f, 5.0f };
 	//X,Y,Z軸周りの回転軸を設定
-	worldTransform_.rotation_ = { XM_PI / 4.0f, XM_PI / 4.0f, 0.0f};
+	worldTransform_.rotation_ = { XM_PI / 4.0f, XM_PI / 4.0f, 0.0f };
 	//X,Y,Z方向の平行移動を設定
 	worldTransform_.translation_ = { 10.0f, 10.0f, 10.0f };
 
@@ -35,9 +35,25 @@ void GameScene::Initialize() {
 	worldTransform_.Initialize();
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
+
+
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+
+	debugText_->SetPos(50, 50);
+	debugText_->Printf("transform:(%f,%f,%f)",
+		worldTransform_.translation_.x, worldTransform_.translation_.y, worldTransform_.translation_.z);
+
+	debugText_->SetPos(50, 70);
+	debugText_->Printf("rotation:(%f,%f,%f)",
+		worldTransform_.rotation_.x, worldTransform_.rotation_.y, worldTransform_.rotation_.z);
+
+	debugText_->SetPos(50, 90);
+	debugText_->Printf("scale:(%f,%f,%f)",
+		worldTransform_.scale_.x, worldTransform_.scale_.y, worldTransform_.scale_.z);
+
+}
 
 void GameScene::Draw() {
 

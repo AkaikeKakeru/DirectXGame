@@ -60,6 +60,8 @@ private: // メンバ変数
 	//ビュープロジェクション
 	ViewProjection viewProjection_;
 
+	
+ 
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
