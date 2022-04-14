@@ -6,7 +6,9 @@ using namespace DirectX;
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() {}
+GameScene::~GameScene() {
+	delete sprite_;
+}
 
 void GameScene::Initialize() {
 
@@ -16,6 +18,7 @@ void GameScene::Initialize() {
 	debugText_ = DebugText::GetInstance();
 
 	textureHandle_ = TextureManager::Load("SmileyYellow.png");
+	sprite_ = Sprite::Create(textureHandle_, { 100,50 });
 }
 
 void GameScene::Update() {}
