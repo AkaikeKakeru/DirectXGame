@@ -21,10 +21,18 @@ void GameScene::Initialize() {
 	textureHandle_ = TextureManager::Load("mario.jpg");
 	//3Dモデルの生成
 	model_ = Model::Create();
+
+
+	//X,Y,Z方向のスケーリングを設定
+	worldTransform_.scale_ = { 5.0f, 1.0f, 1.0f };
+
+
 	//ワールドトランスフォームの初期化
 	worldTransform_.Initialize();
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
+
+
 }
 
 void GameScene::Update() {}
