@@ -51,8 +51,12 @@ class GameScene {
 	//テクスチャハンドル
 	uint32_t textureHandle_ = 0;
 
-	//スクリプト
+	//スプライト
 	Sprite* sprite_ = nullptr;
+
+	//3Dモデル
+	Model* model_ = nullptr;
+
 
 	/// <summary>
 	/// ゲームシーン用

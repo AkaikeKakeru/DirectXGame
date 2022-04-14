@@ -8,6 +8,7 @@ GameScene::GameScene() {}
 
 GameScene::~GameScene() {
 	delete sprite_;
+	delete model_;
 }
 
 void GameScene::Initialize() {
@@ -17,8 +18,13 @@ void GameScene::Initialize() {
 	audio_ = Audio::GetInstance();
 	debugText_ = DebugText::GetInstance();
 
+	//ファイル名を指定して読み込み
 	textureHandle_ = TextureManager::Load("SmileyYellow.png");
+	//スプライト生成
 	sprite_ = Sprite::Create(textureHandle_, { 100,50 });
+
+	//3Dモデル生成
+	model_ = Model::Create();
 }
 
 void GameScene::Update() {
