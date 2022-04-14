@@ -21,7 +21,15 @@ void GameScene::Initialize() {
 	sprite_ = Sprite::Create(textureHandle_, { 100,50 });
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+	//スプライトの今の座標を取得
+	XMFLOAT2 position = sprite_->GetPosition();
+	//座標を{2,0}移動
+	position.x += 2.0f;
+	position.y += 1.0f;
+	//移動した座標をスプライトに反映
+	sprite_->SetPosition(position);
+}
 
 void GameScene::Draw() {
 
