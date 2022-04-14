@@ -24,16 +24,17 @@ void GameScene::Initialize() {
 
 
 	//X,Y,Z方向のスケーリングを設定
-	worldTransform_.scale_ = { 5.0f, 1.0f, 1.0f };
+	worldTransform_.scale_ = { 1.0f, 1.0f, 1.0f };
 	//X,Y,Z軸周りの回転軸を設定
-	worldTransform_.rotation_ = { 0.0f, XM_PI/4.0f, 0.0f };
+	worldTransform_.rotation_ = { 0.0f, XMConvertToRadians(45.0f), 0.0f};
+	//X,Y,Z方向の平行移動を設定
+	worldTransform_.translation_ = { 0.0f, 10.0f, 0.0f };
+
 
 	//ワールドトランスフォームの初期化
 	worldTransform_.Initialize();
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
-
-
 }
 
 void GameScene::Update() {}
