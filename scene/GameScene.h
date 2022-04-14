@@ -63,6 +63,10 @@ class GameScene {
 	//ビュープロジェクション
 	ViewProjection viewProjection_;
 
+
+	//サウンドデータハンドル
+	uint32_t soundDataHandle_ = 0;
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

@@ -19,7 +19,7 @@ void GameScene::Initialize() {
 	debugText_ = DebugText::GetInstance();
 
 	//ファイル名を指定して読み込み
-	textureHandle_ = TextureManager::Load("SmileyYellow.png");
+	textureHandle_ = TextureManager::Load("mario.jpg");
 	
 	//スプライト生成
 	sprite_ = Sprite::Create(textureHandle_, { 100,50 });
@@ -31,6 +31,10 @@ void GameScene::Initialize() {
 	worldTransform_.Initialize();
 	//ビュープロジェクション
 	viewProjection_.Initialize();
+
+
+	//サウンドデータの読み込み
+	soundDataHandle_ = audio_->LoadWave("se_sad03.wav");
 }
 
 void GameScene::Update() {
