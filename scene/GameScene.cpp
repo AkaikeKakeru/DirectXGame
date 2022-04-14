@@ -57,6 +57,9 @@ void GameScene::Update() {
 
 	//デバッグテキストの表示
 	debugText_->Print("Kaizokuou ni oreha naru.", 50, 50, 1.0f);
+	//書式付き表示
+	debugText_->SetPos(50, 70);
+	debugText_->Printf("year:%d", 2001);
 }
 
 void GameScene::Draw() {
