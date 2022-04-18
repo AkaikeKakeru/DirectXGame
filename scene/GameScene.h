@@ -48,6 +48,9 @@ private: // メンバ変数
 	Audio* audio_ = nullptr;
 	DebugText* debugText_ = nullptr;
 
+	//カメラ上方向の角度
+	float viewAngle = 0.0f;
+
 	//テクスチャ読み込み
 	uint32_t textureHandle_ = 0;
 
