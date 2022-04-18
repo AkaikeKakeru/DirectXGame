@@ -70,6 +70,32 @@ void GameScene::Update() {
 	debugText_->Printf("scale:(%f,%f,%f)",
 		worldTransform_.scale_.x, worldTransform_.scale_.y, worldTransform_.scale_.z);*/
 
+	//視点移動処理
+	{
+		//視点の移動ベクトル
+		XMFLOAT3 move = { 0,0,0 };
+
+		//視点の移動速さ
+		const float kEyeSpeed = 0.2f;
+
+		//押した方向で移動ベクトルを変更
+		if (input_->PushKey(DIK_W)) {
+			move = { 0,0,kEyeSpeed };
+		} else if (input_->PushKey(DIK_S)) {
+			move = { 0,0,-kEyeSpeed };
+		}
+		//視点移動(ベクトルの加算)
+		viewProjection_.eye.x += move.x;
+		viewProjection_.eye.y += move.y;
+		viewProjection_.eye.z += move.z;
+
+		//行列の再計算
+		viewProjection_.UpdateMatrix();
+
+		debugText_->SetPos(50, 50);
+		debugText_->Printf("eye:(%f,%f,%f)",
+			viewProjection_.eye.x,viewProjection_.eye.y,viewProjection_.eye.z);
+	}
 }
 
 void GameScene::Draw() {
