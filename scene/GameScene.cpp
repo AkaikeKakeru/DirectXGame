@@ -2,6 +2,8 @@
 #include "TextureManager.h"
 #include <cassert>
 
+#include <random>
+
 using namespace DirectX;
 
 GameScene::GameScene() {}
@@ -27,6 +29,16 @@ void GameScene::Initialize() {
 	worldTransform_.scale_ = { 5.0f, 5.0f, 5.0f };
 	//X,Y,Z軸周りの回転軸を設定
 	worldTransform_.rotation_ = { XM_PI / 4.0f, XM_PI / 4.0f, 0.0f };
+
+	//乱数シード生成器
+	std::random_device seed_gen;
+	//メルセンス・ツイスター
+	std::mt19937_64 engine(seed_gen());
+	//乱数範囲(回転角用)
+	std::uniform_real_distribution<float> rotDist(0.0f, XM_2PI);
+	//乱数範囲(座標用)
+	std::uniform_real_distribution<float> rotDist(10.0f, 10.0f);
+
 	//X,Y,Z方向の平行移動を設定
 	worldTransform_.translation_ = { 10.0f, 10.0f, 10.0f };
 
@@ -36,7 +48,7 @@ void GameScene::Initialize() {
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
 
-
+	
 }
 
 void GameScene::Update() {
