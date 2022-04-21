@@ -62,7 +62,12 @@ void GameScene::Initialize() {
 	//アスペクト比を設定
 	viewProjection_.aspectRatio = 1.0f;
 
-	
+	//ニアクリップ距離を設定
+	viewProjection_.nearZ = 52.0f;
+	//ファークリップ距離を設定
+	viewProjection_.farZ = 53.0f;
+
+
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
 
