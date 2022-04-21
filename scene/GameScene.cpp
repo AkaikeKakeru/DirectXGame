@@ -65,14 +65,14 @@ void GameScene::Initialize() {
 
 
 	//カメラ垂直方向視野角を設定
-	viewProjection_.fovAngleY = XMConvertToRadians(10.0f);
+	//viewProjection_.fovAngleY = XMConvertToRadians(0.0f);
 	//アスペクト比を設定
-	viewProjection_.aspectRatio = 1.0f;
+	//viewProjection_.aspectRatio = 1.0f;
 
 	//ニアクリップ距離を設定
-	viewProjection_.nearZ = 52.0f;
+	//viewProjection_.nearZ = 52.0f;
 	//ファークリップ距離を設定
-	viewProjection_.farZ = 53.0f;
+	//viewProjection_.farZ = 53.0f;
 
 
 	//ビュープロジェクションの初期化
@@ -220,14 +220,14 @@ debugText_->Printf("eye:(%f,%f,%f)",
 		}
 
 		//注視点移動(ベクトルの加算)
-		worldTransform_[0].translation_.x += move.x;
-		worldTransform_[0].translation_.y += move.y;
-		worldTransform_[0].translation_.z += move.z;
+		worldTransform_[PartId::Root].translation_.x += move.x;
+		worldTransform_[PartId::Root].translation_.y += move.y;
+		worldTransform_[PartId::Root].translation_.z += move.z;
 
 		//デバッグ用表示
 		debugText_->SetPos(50, 150);
 		debugText_->Printf("Root:(%f,%f,%f)",
-			worldTransform_[0].translation_.x, worldTransform_[0].translation_.y, worldTransform_[0].translation_.z);
+			worldTransform_[PartId::Root].translation_.x, worldTransform_[PartId::Root].translation_.y, worldTransform_[PartId::Root].translation_.z);
 	}
 
 	worldTransform_[0].UpdateMatrix();
