@@ -65,7 +65,7 @@ void GameScene::Initialize() {
 
 
 	//カメラ垂直方向視野角を設定
-	//viewProjection_.fovAngleY = XMConvertToRadians(0.0f);
+	viewProjection_.fovAngleY = XMConvertToRadians(45.0f);
 	//アスペクト比を設定
 	//viewProjection_.aspectRatio = 1.0f;
 
