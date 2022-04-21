@@ -229,6 +229,9 @@ debugText_->Printf("eye:(%f,%f,%f)",
 		debugText_->Printf("Root:(%f,%f,%f)",
 			worldTransform_[0].translation_.x, worldTransform_[0].translation_.y, worldTransform_[0].translation_.z);
 	}
+
+	worldTransform_[0].UpdateMatrix();
+	worldTransform_[1].UpdateMatrix();
 }
 
 void GameScene::Draw() {
@@ -257,10 +260,13 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-	for (size_t i = 0; i < _countof(worldTransform_); i++)
+	/*for (size_t i = 0; i < _countof(worldTransform_); i++)
 	{
 		model_->Draw(worldTransform_[i], viewProjection_, textureHandle_);
-	}
+	}*/
+
+	model_->Draw(worldTransform_[0], viewProjection_, textureHandle_);
+	model_->Draw(worldTransform_[1], viewProjection_, textureHandle_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
