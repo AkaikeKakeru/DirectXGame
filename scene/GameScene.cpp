@@ -48,12 +48,48 @@ void GameScene::Initialize() {
 		//worldTransform_[i].Initialize();
 		
 
-		//親(0番)
-		worldTransform_[0].Initialize();
-		//子(1番)
-		worldTransform_[1].translation_ = { 0,4.5f,0 };
-		worldTransform_[1].parent_ = &worldTransform_[0];
-		worldTransform_[1].Initialize();
+		//大元
+		worldTransform_[PartId::Root].Initialize();
+
+		//脊椎
+		worldTransform_[PartId::Spine].translation_ = { 0,0,0 };
+		worldTransform_[PartId::Spine].parent_ = &worldTransform_[PartId::Root];
+		worldTransform_[PartId::Spine].Initialize();
+
+		//胸
+		worldTransform_[PartId::Chest].translation_ = { 0,1.5f,0 };
+		worldTransform_[PartId::Chest].parent_ = &worldTransform_[PartId::Spine];
+		worldTransform_[PartId::Chest].Initialize();
+
+		//頭
+		worldTransform_[PartId::Head].translation_ = { 0,3.0f,0 };
+		worldTransform_[PartId::Head].parent_ = &worldTransform_[PartId::Chest];
+		worldTransform_[PartId::Head].Initialize();
+
+		//左腕
+		worldTransform_[PartId::ArmL].translation_ = { -3.0f,0,0 };
+		worldTransform_[PartId::ArmL].parent_ = &worldTransform_[PartId::Chest];
+		worldTransform_[PartId::ArmL].Initialize();
+
+		//右腕
+		worldTransform_[PartId::ArmR].translation_ = { 3.0f,0,0 };
+		worldTransform_[PartId::ArmR].parent_ = &worldTransform_[PartId::Chest];
+		worldTransform_[PartId::ArmR].Initialize();
+
+		//尻
+		worldTransform_[PartId::Hip].translation_ = { 0,-1.5f,0 };
+		worldTransform_[PartId::Hip].parent_ = &worldTransform_[PartId::Spine];
+		worldTransform_[PartId::Hip].Initialize();
+
+		//左足
+		worldTransform_[PartId::LegL].translation_ = { -3.0f,-3.0f,0 };
+		worldTransform_[PartId::LegL].parent_ = &worldTransform_[PartId::Hip];
+		worldTransform_[PartId::LegL].Initialize();
+
+		//右足
+		worldTransform_[PartId::LegR].translation_ = { 3.0f,-3.0f,0 };
+		worldTransform_[PartId::LegR].parent_ = &worldTransform_[PartId::Hip];
+		worldTransform_[PartId::LegR].Initialize();
 	}
 
 	//カメラ視点座標を設定
@@ -230,8 +266,6 @@ debugText_->Printf("eye:(%f,%f,%f)",
 			worldTransform_[PartId::Root].translation_.x, worldTransform_[PartId::Root].translation_.y, worldTransform_[PartId::Root].translation_.z);
 	}
 
-	worldTransform_[0].UpdateMatrix();
-	worldTransform_[1].UpdateMatrix();
 }
 
 void GameScene::Draw() {
@@ -265,8 +299,7 @@ void GameScene::Draw() {
 		model_->Draw(worldTransform_[i], viewProjection_, textureHandle_);
 	}*/
 
-	model_->Draw(worldTransform_[0], viewProjection_, textureHandle_);
-	model_->Draw(worldTransform_[1], viewProjection_, textureHandle_);
+
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
