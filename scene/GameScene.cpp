@@ -176,9 +176,23 @@ void GameScene::Update() {
 			XMConvertToDegrees(viewProjection_.fovAngleY));
 	}
 
-	
-	
+	//クリップ距離変更処理
+	{
+		//上下キーでニアクリップ距離を増減
+		if (input_->PushKey(DIK_UP)) {
+			viewProjection_.nearZ += 0.1f;	
+		} else if (input_->PushKey(DIK_DOWN)) {
+			viewProjection_.nearZ -= 0.1f;	;
+		}
 
+		//行列の再計算
+		viewProjection_.UpdateMatrix();
+
+		//デバッグ用表示
+		debugText_->SetPos(50, 130);
+		debugText_->Printf("nearZ:%f",
+			XMConvertToDegrees(viewProjection_.nearZ));
+	}
 }
 
 void GameScene::Draw() {
