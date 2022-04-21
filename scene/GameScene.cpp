@@ -19,7 +19,6 @@ void GameScene::Initialize() {
 	audio_ = Audio::GetInstance();
 	debugText_ = DebugText::GetInstance();
 
-
 	//ファイル名を指定して読み込む
 	textureHandle_ = TextureManager::Load("mario.jpg");
 	//3Dモデルの生成
@@ -34,7 +33,6 @@ void GameScene::Initialize() {
 	//乱数範囲(座標用)
 	std::uniform_real_distribution<float> posDist(-10.0f, 10.0f);
 
-
 	for (size_t i = 0; i < _countof(worldTransform_); i++)
 	{
 		////X,Y,Z方向のスケーリングを設定
@@ -46,7 +44,6 @@ void GameScene::Initialize() {
 
 		////ワールドトランスフォームの初期化
 		//worldTransform_[i].Initialize();
-
 
 		//大元
 		worldTransform_[PartId::Root].Initialize();
@@ -99,7 +96,6 @@ void GameScene::Initialize() {
 	//カメラ上方向ベクトルを設定 (右上45度指定)
 	viewProjection_.up = { 0.0f,1.0f,0.0f };
 
-
 	//カメラ垂直方向視野角を設定
 	viewProjection_.fovAngleY = XMConvertToRadians(45.0f);
 	//アスペクト比を設定
@@ -113,7 +109,6 @@ void GameScene::Initialize() {
 
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
-
 }
 
 void GameScene::Update() {
@@ -139,10 +134,10 @@ void GameScene::Update() {
 			//	viewProjection_.eye.y += move.y;
 			//	viewProjection_.eye.z += move.z;
 
-			//	//行列の再計算
-			//	viewProjection_.UpdateMatrix();
+				//行列の再計算
+			viewProjection_.UpdateMatrix();
 
-		//デバッグ用表示
+			//デバッグ用表示
 			debugText_->SetPos(50, 50);
 			debugText_->Printf("eye:(%f,%f,%f)",
 				viewProjection_.eye.x, viewProjection_.eye.y, viewProjection_.eye.z);
@@ -167,10 +162,10 @@ void GameScene::Update() {
 			//	viewProjection_.target.y += move.y;
 			//	viewProjection_.target.z += move.z;
 
-			//	//行列の再計算
-			//	viewProjection_.UpdateMatrix();
+				//行列の再計算
+			viewProjection_.UpdateMatrix();
 
-				//デバッグ用表示
+			//デバッグ用表示
 			debugText_->SetPos(50, 70);
 			debugText_->Printf("target:(%f,%f,%f)",
 				viewProjection_.target.x, viewProjection_.target.y, viewProjection_.target.z);
@@ -190,10 +185,10 @@ void GameScene::Update() {
 			//	//上方向ベクトルを計算(半径1の円周上の座標)
 			//	viewProjection_.up = { cosf(viewAngle),sinf(viewAngle),0.0f };
 
-			//	//行列の再計算
-			//	viewProjection_.UpdateMatrix();
+				//行列の再計算
+			viewProjection_.UpdateMatrix();
 
-				//デバッグ用表示
+			//デバッグ用表示
 			debugText_->SetPos(50, 90);
 			debugText_->Printf("up:(%f,%f,%f)",
 				viewProjection_.up.x, viewProjection_.up.y, viewProjection_.up.z);
@@ -212,8 +207,8 @@ void GameScene::Update() {
 			//	viewProjection_.fovAngleY = max(viewProjection_.fovAngleY, 0.01f);
 			//}
 
-			////行列の再計算
-			//viewProjection_.UpdateMatrix();
+			//行列の再計算
+			viewProjection_.UpdateMatrix();
 
 			//デバッグ用表示
 			debugText_->SetPos(50, 110);
@@ -230,8 +225,8 @@ void GameScene::Update() {
 			//	viewProjection_.nearZ -= 0.1f;	;
 			//}
 
-			////行列の再計算
-			//viewProjection_.UpdateMatrix();
+			//行列の再計算
+			viewProjection_.UpdateMatrix();
 
 			//デバッグ用表示
 			debugText_->SetPos(50, 130);
@@ -275,7 +270,8 @@ void GameScene::Update() {
 		//押した方向で移動ベクトルを変更
 		if (input_->PushKey(DIK_U)) {
 			worldTransform_[PartId::Chest].rotation_.y -= kChestSpeed;
-		}else if (input_->PushKey(DIK_I)) {
+		}
+		else if (input_->PushKey(DIK_I)) {
 			worldTransform_[PartId::Chest].rotation_.y += kChestSpeed;
 		}
 	}
@@ -288,7 +284,8 @@ void GameScene::Update() {
 		//押した方向で移動ベクトルを変更
 		if (input_->PushKey(DIK_J)) {
 			worldTransform_[PartId::Hip].rotation_.y -= kHipSpeed;
-		}else if (input_->PushKey(DIK_K)) {
+		}
+		else if (input_->PushKey(DIK_K)) {
 			worldTransform_[PartId::Hip].rotation_.y += kHipSpeed;
 		}
 	}
@@ -302,7 +299,6 @@ void GameScene::Update() {
 	worldTransform_[Hip].UpdateMatrix();
 	worldTransform_[LegL].UpdateMatrix();
 	worldTransform_[LegR].UpdateMatrix();
-
 }
 
 void GameScene::Draw() {
@@ -335,7 +331,6 @@ void GameScene::Draw() {
 	{
 		model_->Draw(worldTransform_[i], viewProjection_, textureHandle_);
 	}*/
-
 
 	//model_->Draw(worldTransform_[Root], viewProjection_, textureHandle_);
 	//model_->Draw(worldTransform_[Spine], viewProjection_, textureHandle_);
