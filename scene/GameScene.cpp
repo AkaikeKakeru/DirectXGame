@@ -266,6 +266,17 @@ debugText_->Printf("eye:(%f,%f,%f)",
 			worldTransform_[PartId::Root].translation_.x, worldTransform_[PartId::Root].translation_.y, worldTransform_[PartId::Root].translation_.z);
 	}
 
+
+	worldTransform_[Root].UpdateMatrix();
+	worldTransform_[Spine].UpdateMatrix();
+	worldTransform_[Head].UpdateMatrix();
+	worldTransform_[Chest].UpdateMatrix();
+	worldTransform_[ArmL].UpdateMatrix();
+	worldTransform_[ArmR].UpdateMatrix();
+	worldTransform_[Hip].UpdateMatrix();
+	worldTransform_[LegL].UpdateMatrix();
+	worldTransform_[LegR].UpdateMatrix();
+
 }
 
 void GameScene::Draw() {
@@ -300,6 +311,15 @@ void GameScene::Draw() {
 	}*/
 
 
+	//model_->Draw(worldTransform_[Root], viewProjection_, textureHandle_);
+	//model_->Draw(worldTransform_[Spine], viewProjection_, textureHandle_);
+	model_->Draw(worldTransform_[Chest], viewProjection_, textureHandle_);
+	model_->Draw(worldTransform_[Head], viewProjection_, textureHandle_);
+	model_->Draw(worldTransform_[ArmL], viewProjection_, textureHandle_);
+	model_->Draw(worldTransform_[ArmR], viewProjection_, textureHandle_);
+	model_->Draw(worldTransform_[Hip], viewProjection_, textureHandle_);
+	model_->Draw(worldTransform_[LegL], viewProjection_, textureHandle_);
+	model_->Draw(worldTransform_[LegR], viewProjection_, textureHandle_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
