@@ -37,6 +37,7 @@ void GameScene::Initialize() {
 
 	for (size_t i = 0; i < _countof(worldTransform_); i++)
 	{
+		/* 2-03
 		//X,Y,Z方向のスケーリングを設定
 		worldTransform_[i].scale_ = { 1.0f, 1.0f, 1.0f };
 		//X,Y,Z軸周りの回転角を設定
@@ -46,7 +47,14 @@ void GameScene::Initialize() {
 
 		//ワールドトランスフォームの初期化
 		worldTransform_[i].Initialize();
+		*/
 
+		//親(0番)
+		worldTransform_[0].Initialize();
+		//子(1番)
+		worldTransform_[1].translation_ = { 0,4.5f,0 };
+		worldTransform_[1].parent_ = &worldTransform_[0];
+		worldTransform_[1].Initialize();
 	}
 
 	//カメラ視点座標を設定
@@ -75,6 +83,8 @@ void GameScene::Initialize() {
 
 void GameScene::Update() {
 
+	//カメラ連続処理
+	{
 	////視点移動処理
 	{
 	//	//視点の移動ベクトル
@@ -156,19 +166,19 @@ void GameScene::Update() {
 	
 	//FoV変更処理
 	{
-		//上のキーで視野角が広がる
-		if (input_->PushKey(DIK_W)) {
-			viewProjection_.fovAngleY += 0.01f;
-			viewProjection_.fovAngleY = min(viewProjection_.fovAngleY, XM_PI);
-			//下キーで視野角が狭まる
-		}
-		else if (input_->PushKey(DIK_S)) {
-			viewProjection_.fovAngleY -= 0.01f;
-			viewProjection_.fovAngleY = max(viewProjection_.fovAngleY, 0.01f);
-		}
+		////上のキーで視野角が広がる
+		//if (input_->PushKey(DIK_W)) {
+		//	viewProjection_.fovAngleY += 0.01f;
+		//	viewProjection_.fovAngleY = min(viewProjection_.fovAngleY, XM_PI);
+		//	//下キーで視野角が狭まる
+		//}
+		//else if (input_->PushKey(DIK_S)) {
+		//	viewProjection_.fovAngleY -= 0.01f;
+		//	viewProjection_.fovAngleY = max(viewProjection_.fovAngleY, 0.01f);
+		//}
 
-		//行列の再計算
-		viewProjection_.UpdateMatrix();
+		////行列の再計算
+		//viewProjection_.UpdateMatrix();
 
 		//デバッグ用表示
 		debugText_->SetPos(50, 110);
@@ -178,20 +188,21 @@ void GameScene::Update() {
 
 	//クリップ距離変更処理
 	{
-		//上下キーでニアクリップ距離を増減
-		if (input_->PushKey(DIK_UP)) {
-			viewProjection_.nearZ += 0.1f;	
-		} else if (input_->PushKey(DIK_DOWN)) {
-			viewProjection_.nearZ -= 0.1f;	;
-		}
+		////上下キーでニアクリップ距離を増減
+		//if (input_->PushKey(DIK_UP)) {
+		//	viewProjection_.nearZ += 0.1f;	
+		//} else if (input_->PushKey(DIK_DOWN)) {
+		//	viewProjection_.nearZ -= 0.1f;	;
+		//}
 
-		//行列の再計算
-		viewProjection_.UpdateMatrix();
+		////行列の再計算
+		//viewProjection_.UpdateMatrix();
 
 		//デバッグ用表示
 		debugText_->SetPos(50, 130);
 		debugText_->Printf("nearZ:%f",
 			XMConvertToDegrees(viewProjection_.nearZ));
+	}
 	}
 }
 
